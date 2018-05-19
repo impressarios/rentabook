@@ -1,13 +1,18 @@
 package bookBazar.Controller;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import bookBazar.Service.UserAuthenticationService;
 import bookBazar.models.LoginModel;
+import bookBazar.models.UserSessionModel;
 import bookBazar.repositories.LoginRepository;
 
 @RestController
@@ -15,7 +20,8 @@ public class LoginController {
 	
 	@Autowired
     LoginRepository loginRepository;
-
+	@Autowired 
+	UserAuthenticationService userauth;
     @RequestMapping(method=RequestMethod.GET, value="/users")
     public Iterable<LoginModel> user() {
         return loginRepository.findAll();
@@ -60,5 +66,20 @@ public class LoginController {
 
         return "user deleted";
     }
-
+    
+	@RequestMapping(method=RequestMethod.POST,value="/userauth",consumes=MediaType.APPLICATION_FORM_URLENCODED_VALUE,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public UserSessionModel getSessionIdAndUserId(@NotNull LoginModel user)throws IllegalArgumentException
+	{
+		UserSessionModel session=null;
+	   
+			if(user.getUsername()!=null && user.getPassword()!=null)
+			{
+				session=userauth.verifyUser(user);
+			}
+			else
+			{
+				throw new IllegalArgumentException("Invalid Credentials");
+			}
+	    return session;
+	}
 }
