@@ -2,7 +2,9 @@ package bookBazar.Service;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,9 +28,12 @@ public class UserAuthenticationService {
 		{
 			if(exuser.getPassword().equals(user.getPassword()))
 			{
+				removePreviousSession(exuser);
 				session =new UserSessionModel();
+				session.setUserId(exuser.getId());
 				session.setSessionId(generateSessionId());
 				session.setUserDetail(exuser);
+				
 				if(session.getSessionId()!=null)
 				{
 					sessionRepository.save(session);			
@@ -50,6 +55,15 @@ public class UserAuthenticationService {
 		return session;
 	}
 	
+	private void removePreviousSession(LoginModel exuser) {
+		UserSessionModel session=sessionRepository.findOne(exuser.getId());
+		if(session!=null)
+		{	
+				sessionRepository.delete(session.getUserId());
+		}
+	}
+	
+
 	private String generateSessionId()
 	{
 		UUID uniqueKey = UUID.randomUUID(); 
