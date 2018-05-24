@@ -38,11 +38,11 @@ public class UserPDO {
 	/** The picture. */
 	String picture;
 	
-	/** The trust points. */
-	int trustPoints;
+	/** The discouraged points. */
+	int discouraged;
 	
-	/** The activities. */
-	List<Activity> activities;
+	/** The encouraged points. */
+	int encouraged;
 	
 	/** The connections. */
 	List<Connection> connections;
@@ -50,20 +50,8 @@ public class UserPDO {
 	/** The genres. */
 	List<String> genres;
 	
-	/** The transactions. */
-	List<TransactionsPDO> transactions;
-	
-	/** The concerns. */
-	List<ConcernPDO> concerns;
-	
-	/** The chat rooms. */
-	List<ChatRoomPDO> chatRooms;
-	
 	/** The earnings. */
 	List<Earning> earnings; 
-	
-	/** The Reviews. */
-	List<Review> Reviews;
 	
 	/**
 	 * Gets the id.
@@ -210,39 +198,39 @@ public class UserPDO {
 	}
 	
 	/**
-	 * Gets the trust points.
+	 * Gets the Discourage points.
 	 *
-	 * @return the trust points
+	 * @return the Discourage points
 	 */
-	public int getTrustPoints() {
-		return trustPoints;
+	public int getDiscouragePoints() {
+		return discouraged;
 	}
 	
 	/**
-	 * Sets the trust points.
+	 * Sets the Discourage points.
 	 *
-	 * @param trustPoints the new trust points
+	 * @param DiscouragePoints the new Discourage points
 	 */
-	public void setTrustPoints(int trustPoints) {
-		this.trustPoints = trustPoints;
+	public void setDiscouragePoints(int DiscouragePoints) {
+		this.discouraged = DiscouragePoints;
 	}
 	
 	/**
-	 * Gets the activities.
+	 * Gets the Discourage points.
 	 *
-	 * @return the activities
+	 * @return the Discourage points
 	 */
-	public List<Activity> getActivities() {
-		return activities;
+	public int getEncouragePoints() {
+		return encouraged;
 	}
 	
 	/**
-	 * Sets the activities.
+	 * Sets the Discourage points.
 	 *
-	 * @param activities the new activities
+	 * @param DiscouragePoints the new Discourage points
 	 */
-	public void setActivities(List<Activity> activities) {
-		this.activities = activities;
+	public void setEncouragePoints(int encouragePoints) {
+		this.encouraged = encouragePoints;
 	}
 	
 	/**
@@ -282,60 +270,6 @@ public class UserPDO {
 	}
 	
 	/**
-	 * Gets the transactions.
-	 *
-	 * @return the transactions
-	 */
-	public List<TransactionsPDO> getTransactions() {
-		return transactions;
-	}
-	
-	/**
-	 * Sets the transactions.
-	 *
-	 * @param transactions the new transactions
-	 */
-	public void setTransactions(List<TransactionsPDO> transactions) {
-		this.transactions = transactions;
-	}
-	
-	/**
-	 * Gets the concerns.
-	 *
-	 * @return the concerns
-	 */
-	public List<ConcernPDO> getConcerns() {
-		return concerns;
-	}
-	
-	/**
-	 * Sets the concerns.
-	 *
-	 * @param concerns the new concerns
-	 */
-	public void setConcerns(List<ConcernPDO> concerns) {
-		this.concerns = concerns;
-	}
-	
-	/**
-	 * Gets the chat rooms.
-	 *
-	 * @return the chat rooms
-	 */
-	public List<ChatRoomPDO> getChatRooms() {
-		return chatRooms;
-	}
-	
-	/**
-	 * Sets the chat rooms.
-	 *
-	 * @param chatRooms the new chat rooms
-	 */
-	public void setChatRooms(List<ChatRoomPDO> chatRooms) {
-		this.chatRooms = chatRooms;
-	}
-	
-	/**
 	 * Gets the earnings.
 	 *
 	 * @return the earnings
@@ -353,21 +287,4 @@ public class UserPDO {
 		this.earnings = earnings;
 	}
 	
-	/**
-	 * Gets the reviews.
-	 *
-	 * @return the reviews
-	 */
-	public List<Review> getReviews() {
-		return Reviews;
-	}
-	
-	/**
-	 * Sets the reviews.
-	 *
-	 * @param reviews the new reviews
-	 */
-	public void setReviews(List<Review> reviews) {
-		Reviews = reviews;
-	}
 }
