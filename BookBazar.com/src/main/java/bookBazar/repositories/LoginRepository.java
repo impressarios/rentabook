@@ -10,6 +10,10 @@ public interface LoginRepository extends CrudRepository<LoginModel, String> {
 	LoginModel findById(String id);
 	
 	LoginModel findByUsername(@Param("name") String name);
+	
+	LoginModel findByContact(@Param("contact") String contact);
+	
+	LoginModel findByEmail(@Param("email") String email);
 
     @Override
     void delete(LoginModel deleted);

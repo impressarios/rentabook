@@ -1,0 +1,18 @@
+Generate getters and setters autmatically:
+
+=> right-click on the file
+=> select source
+=> select generate getters and setters
+=> in the getter setter window select the params
+
+Generate autodoc automatically:
+
+=> ctrl + A
+=> ctrl + alt + j
+
+	OR
+	
+=> ctrl + A
+=> right-click
+=> select Jautodoc
+=> select add javadoc
