@@ -1,12 +1,11 @@
 package bookBazar.models.DTO;
 
+import java.util.List;
+
 /**
  * The Class ProfileUpdateRequestDTO.
  */
 public class ProfileUpdateRequestDTO extends User_BasicDTO{
-	
-	/** The id. */
-	String id;
 	
 	/** The name. */
 	String name;
@@ -19,23 +18,26 @@ public class ProfileUpdateRequestDTO extends User_BasicDTO{
 	
 	/** The picture. */
 	String picture;
+	
+	/** The genres. */
+	List<String> genres;
 
 	/**
-	 * Gets the id.
+	 * Gets the genres.
 	 *
-	 * @return the id
+	 * @return the genres
 	 */
-	public String getId() {
-		return id;
+	public List<String> getGenres() {
+		return genres;
 	}
 
 	/**
-	 * Sets the id.
+	 * Sets the genres.
 	 *
-	 * @param id the new id
+	 * @param genres the new genres
 	 */
-	public void setId(String id) {
-		this.id = id;
+	public void setGenres(List<String> genres) {
+		this.genres = genres;
 	}
 
 	/**
