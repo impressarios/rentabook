@@ -9,9 +9,9 @@ public interface UserRepository extends MongoRepository<UserPDO, String> {
 	
 	UserPDO findById(String id);
 	
-	UserPDO findByUsername(@Param("name") String name);
+	UserPDO findByUsername(@Param("username") String name);
 	
-	UserPDO findByContact(@Param("contact") String contact);
+	UserPDO findByPhoneNumber(@Param("phoneNumber") String contact);
 	
 	UserPDO findByEmail(@Param("email") String email);
 

@@ -29,7 +29,7 @@ public class SignUpService {
 		newUser.setPassword(userCredentials.getPassword());
 		
 		if(StringUtils.isEmpty(userCredentials.getEmail())) {
-			if(StringUtils.isEmpty(userRepository.findByContact(userCredentials.getPhoneNumber()))){
+			if(StringUtils.isEmpty(userRepository.findByPhoneNumber(userCredentials.getPhoneNumber()))){
 				newUser.setPhoneNumber(userCredentials.getPhoneNumber());
 			}
 			else {
@@ -37,7 +37,7 @@ public class SignUpService {
 			}
 		}
 		else {
-			if(StringUtils.isEmpty(userRepository.findByContact(userCredentials.getEmail()))){
+			if(StringUtils.isEmpty(userRepository.findByPhoneNumber(userCredentials.getEmail()))){
 				newUser.setEmail(userCredentials.getPhoneNumber());
 			}
 			else {
@@ -60,7 +60,7 @@ public class SignUpService {
 	}
 	
 	public UserPDO findUserByContact(String contact) {
-		return userRepository.findByContact(contact);
+		return userRepository.findByPhoneNumber(contact);
 	}
 	
 	public ProfileUpdateResponseDTO getUpdatedUser(String id, ProfileUpdateRequestDTO userDetails)throws IllegalArgumentException {
@@ -79,7 +79,7 @@ public class SignUpService {
 		}
 		if(!StringUtils.isEmpty(userDetails.getPhoneNumber())) {
 			if(StringUtils.isEmpty(updatedUser.getPhoneNumber()) || !updatedUser.getPhoneNumber().equalsIgnoreCase(userDetails.getPhoneNumber())) {
-				if(StringUtils.isEmpty(userRepository.findByContact(userDetails.getPhoneNumber()))) {
+				if(StringUtils.isEmpty(userRepository.findByPhoneNumber(userDetails.getPhoneNumber()))) {
 					updatedUser.setPhoneNumber(userDetails.getPhoneNumber());
 				}
 				else {

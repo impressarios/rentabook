@@ -11,8 +11,6 @@ public interface LoginRepository extends CrudRepository<LoginModel, String> {
 	
 	LoginModel findByUsername(@Param("name") String name);
 	
-	LoginModel findByContact(@Param("contact") String contact);
-	
 	LoginModel findByEmail(@Param("email") String email);
 
     @Override

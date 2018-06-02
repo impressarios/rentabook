@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import bookBazar.Controller.LoginController;
 import bookBazar.models.LoginModel;
 import bookBazar.models.UserSessionModel;
+import bookBazar.models.PDO.UserPDO;
 import bookBazar.repositories.UserSessionRepository;
 
 @Service
@@ -19,11 +20,11 @@ public class UserAuthenticationService {
 	@Autowired LoginController login;
 	@Autowired UserSessionRepository sessionRepository;
 
-	public UserSessionModel verifyUser(LoginModel user)throws IllegalArgumentException
+	public UserSessionModel verifyUser(UserPDO user)throws IllegalArgumentException
 	{
 		UserSessionModel session=null;
 		
-		LoginModel exuser= login.showUser(user.getUsername());
+		UserPDO exuser= login.showUser(user.getUsername());
 		if(exuser!=null)
 		{
 			if(exuser.getPassword().equals(user.getPassword()))
@@ -55,7 +56,7 @@ public class UserAuthenticationService {
 		return session;
 	}
 	
-	private void removePreviousSession(LoginModel exuser) {
+	private void removePreviousSession(UserPDO exuser) {
 		UserSessionModel session=sessionRepository.findOne(exuser.getId());
 		if(session!=null)
 		{	

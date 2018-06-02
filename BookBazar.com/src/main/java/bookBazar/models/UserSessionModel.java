@@ -1,9 +1,11 @@
 package bookBazar.models;
 
+import bookBazar.models.PDO.UserPDO;
+
 public class UserSessionModel {
 	private String id;
 	private String sessionId;
-	private LoginModel userDetail;
+	private UserPDO userDetail;
 public String getUserId() {
 	return id;
 }
@@ -16,10 +18,10 @@ public String getSessionId() {
 public void setSessionId(String sessionId) {
 	this.sessionId = sessionId;
 }
-public LoginModel getUserDetail() {
+public UserPDO getUserDetail() {
 	return userDetail;
 }
-public void setUserDetail(LoginModel userDetail) {
+public void setUserDetail(UserPDO userDetail) {
 	this.userDetail = userDetail;
 }
 }

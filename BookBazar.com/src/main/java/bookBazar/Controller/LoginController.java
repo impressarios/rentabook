@@ -66,7 +66,7 @@ public class LoginController {
     }
     
 	@RequestMapping(method=RequestMethod.POST,value="/userauth",consumes=MediaType.APPLICATION_FORM_URLENCODED_VALUE,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public UserSessionModel getSessionIdAndUserId(@NotNull LoginModel user)throws IllegalArgumentException
+	public UserSessionModel getSessionIdAndUserId(@NotNull UserPDO user)throws IllegalArgumentException
 	{
 		UserSessionModel session=null;
 	   
