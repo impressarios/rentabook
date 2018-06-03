@@ -7,19 +7,21 @@ import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import bookBazar.Service.SignUpService;
 import bookBazar.Service.UserAuthenticationService;
-import bookBazar.models.LoginModel;
-import bookBazar.models.UserSessionModel;
+import bookBazar.models.DTO.LoginRequestDTO;
 import bookBazar.models.DTO.ProfileUpdateRequestDTO;
 import bookBazar.models.DTO.ProfileUpdateResponseDTO;
 import bookBazar.models.DTO.SignUpRequestDTO;
 import bookBazar.models.DTO.SignUpResponseDTO;
+import bookBazar.models.DTO.UsersessionResponseDTO;
 import bookBazar.models.PDO.UserPDO;
+import bookBazar.models.PDO.UserSessionPDO;
 
 @RestController
 public class LoginController {
@@ -65,19 +67,47 @@ public class LoginController {
         return "user deleted";
     }
     
+    /**
+	 * generate Usersession during login
+	 *
+	 */
 	@RequestMapping(method=RequestMethod.POST,value="/userauth",consumes=MediaType.APPLICATION_FORM_URLENCODED_VALUE,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public UserSessionModel getSessionIdAndUserId(@NotNull UserPDO user)throws IllegalArgumentException
-	{
-		UserSessionModel session=null;
-	   
-			if(user.getUsername()!=null && user.getPassword()!=null)
-			{
+	public UsersessionResponseDTO getSessionIdAndUserId(@NotNull LoginRequestDTO user)throws IllegalArgumentException{
+		UsersessionResponseDTO session=null;
+			if((!StringUtils.isEmpty(user.getEmail())||!StringUtils.isEmpty(user.getPhoneNumber())||!StringUtils.isEmpty(user.getUsername())) && !StringUtils.isEmpty(user.getPassword())){
 				session=userauth.verifyUser(user);
 			}
-			else
-			{
+			else{
 				throw new IllegalArgumentException("Invalid Credentials");
 			}
 	    return session;
+	}
+	/**
+	 * destroy Usersession during logout
+	 *
+	 */
+	@RequestMapping(method=RequestMethod.DELETE,value="/dstrysess/{userId}")
+	public void deleteUserSession(@PathVariable("userId")String userId)throws IllegalArgumentException{
+			if((!StringUtils.isEmpty(userId))){
+					userauth.destroyUserSession(userId);
+			}
+			else{
+				throw new IllegalArgumentException("Not Valid UserId");
+			}
+	}
+	
+	/**
+	 * verify Usersession
+	 *
+	 */
+	@RequestMapping(method=RequestMethod.POST,value="/matchsess")
+	public boolean matchUserSession(@RequestHeader("UserId")String userId,@RequestHeader("SessionId")String sessionId)throws IllegalArgumentException{
+		boolean usersessionFlag=false;
+		if((!StringUtils.isEmpty(userId)) && (!StringUtils.isEmpty(sessionId))){
+			usersessionFlag=userauth.matchUserSession(userId,sessionId);
+	}else{
+			throw new IllegalArgumentException("Not Valid UserId");
+		}
+		return usersessionFlag;
 	}
 }

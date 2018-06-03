@@ -1,12 +1,15 @@
 package bookBazar.repositories;
 
+import bookBazar.models.PDO.UserSessionPDO;
 
+/**
+ * @author Raunak
+ *
+ */
+public interface UserSessionRepository {
 
-import org.springframework.data.mongodb.repository.MongoRepository;
-
-
-import bookBazar.models.UserSessionModel;
-
-public interface UserSessionRepository extends MongoRepository<UserSessionModel, String>{
-
+	public void saveUserSession(UserSessionPDO userSession);
+	public UserSessionPDO  getUserSession(String userId);
+	public void distroyUserSession(String userId);
+	
 }
