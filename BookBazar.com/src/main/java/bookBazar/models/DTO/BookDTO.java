@@ -1,9 +1,9 @@
-package bookBazar.models.PDO;
+package bookBazar.models.DTO;
 
 import bookBazar.models.other.Description;
 import bookBazar.models.other.Price;
 
-public class BookPDO {
+public class BookDTO {
 	String bookId;
 	String ISBN;
     String bookName;
@@ -20,10 +20,7 @@ public class BookPDO {
     int totalQuatity;
     int availableQuatity;
     Price price;
-    Price discount;
-    Price discountPrice;
     Price rentPrice;
-    ReviewPDO review;
 	/**
 	 * @return the bookId
 	 */
@@ -216,30 +213,7 @@ public class BookPDO {
 	public void setPrice(Price price) {
 		this.price = price;
 	}
-	/**
-	 * @return the discount
-	 */
-	public Price getDiscount() {
-		return discount;
-	}
-	/**
-	 * @param discount the discount to set
-	 */
-	public void setDiscount(Price discount) {
-		this.discount = discount;
-	}
-	/**
-	 * @return the discountPrice
-	 */
-	public Price getDiscountPrice() {
-		return discountPrice;
-	}
-	/**
-	 * @param discountPrice the discountPrice to set
-	 */
-	public void setDiscountPrice(Price discountPrice) {
-		this.discountPrice = discountPrice;
-	}
+
 	/**
 	 * @return the rentPrice
 	 */
@@ -252,17 +226,4 @@ public class BookPDO {
 	public void setRentPrice(Price rentPrice) {
 		this.rentPrice = rentPrice;
 	}
-	/**
-	 * @return the review
-	 */
-	public ReviewPDO getReview() {
-		return review;
-	}
-	/**
-	 * @param review the review to set
-	 */
-	public void setReview(ReviewPDO review) {
-		this.review = review;
-	}
-
 }
