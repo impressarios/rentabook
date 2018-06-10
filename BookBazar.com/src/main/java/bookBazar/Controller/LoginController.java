@@ -21,7 +21,6 @@ import bookBazar.models.DTO.SignUpRequestDTO;
 import bookBazar.models.DTO.SignUpResponseDTO;
 import bookBazar.models.DTO.UsersessionResponseDTO;
 import bookBazar.models.PDO.UserPDO;
-import bookBazar.models.PDO.UserSessionPDO;
 
 @RestController
 public class LoginController {
