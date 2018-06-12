@@ -1,14 +1,19 @@
 package bookBazar.models.PDO;
 
+import org.springframework.data.annotation.Id;
+
+import bookBazar.models.other.Category;
 import bookBazar.models.other.Description;
 import bookBazar.models.other.Price;
 
 public class BookPDO {
-	String bookId;
+	/** The id. */
+	@Id
+	String id;
 	String ISBN;
     String bookName;
     String author;
-    String bookCategory;
+    Category bookCategory;
     String bookImage;
     String language;
     String publisher;
@@ -23,18 +28,18 @@ public class BookPDO {
     Price discount;
     Price discountPrice;
     Price rentPrice;
-    ReviewPDO review;
+    
 	/**
 	 * @return the bookId
 	 */
 	public String getBookId() {
-		return bookId;
+		return id;
 	}
 	/**
 	 * @param bookId the bookId to set
 	 */
 	public void setBookId(String bookId) {
-		this.bookId = bookId;
+		this.id = bookId;
 	}
 	/**
 	 * @return the iSBN
@@ -75,13 +80,13 @@ public class BookPDO {
 	/**
 	 * @return the bookCategory
 	 */
-	public String getBookCategory() {
+	public Category getBookCategory() {
 		return bookCategory;
 	}
 	/**
 	 * @param bookCategory the bookCategory to set
 	 */
-	public void setBookCategory(String bookCategory) {
+	public void setBookCategory(Category bookCategory) {
 		this.bookCategory = bookCategory;
 	}
 	/**
@@ -252,17 +257,4 @@ public class BookPDO {
 	public void setRentPrice(Price rentPrice) {
 		this.rentPrice = rentPrice;
 	}
-	/**
-	 * @return the review
-	 */
-	public ReviewPDO getReview() {
-		return review;
-	}
-	/**
-	 * @param review the review to set
-	 */
-	public void setReview(ReviewPDO review) {
-		this.review = review;
-	}
-
 }
